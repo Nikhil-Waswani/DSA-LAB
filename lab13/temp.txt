@@ -1,0 +1,30 @@
+void BFS(int startVertex){
+        boolean flag[] = new boolean[numVertices];
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(startVertex);
+        while(!queue.isEmpty()){
+            int curr = queue.remove();
+            if(flag[curr] != true){
+                System.out.print(curr + " ");
+                flag[curr] = true;
+
+                for(int i=0; i<adjacencyList.get(curr).size(); i++){
+                    queue.add(adjacencyList.get(curr).get(i).dest);
+                }
+            }
+        }
+    }
+
+    void DFS(int startVertex, boolean vis[]){
+        if(vis[startVertex] == true){
+            return;
+        }else{
+            System.err.print(startVertex + " ");
+            vis[startVertex] = true;
+
+            for(int i=0; i<adjacencyList.get(startVertex).size(); i++){
+                DFS(adjacencyList.get(startVertex).get(i).dest, vis);
+            }
+        }
+    }
